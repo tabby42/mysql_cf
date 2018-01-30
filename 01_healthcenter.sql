@@ -62,13 +62,13 @@ CREATE TABLE IF NOT EXISTS intervention (
 
 CREATE TABLE IF NOT EXISTS symptom (
 	id INT unsigned NOT NULL AUTO_INCREMENT,
-    name NVARCHAR(140),
+    name NVARCHAR(140) NOT NULL,
     CONSTRAINT pk_symptom PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS treatment (
 	id INT unsigned NOT NULL AUTO_INCREMENT,
-    name NVARCHAR(140),
+    name NVARCHAR(140) NOT NULL,
     CONSTRAINT pk_treatment PRIMARY KEY(id)
 );
 
