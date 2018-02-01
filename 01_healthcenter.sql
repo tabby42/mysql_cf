@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS doctor (
 );
 
 CREATE TABLE IF NOT EXISTS patient (
-	social_security INT unsigned NOT NULL,
+	social_security BIGINT unsigned NOT NULL,
     firstname NVARCHAR(55) NOT NULL,
     flastname NVARCHAR(55) NOT NULL,
     birthdate DATE NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS admission (
     admission_date DATE NOT NULL,
     release_date DATE,
     fk_unit_id INT unsigned NOT NULL,
-    fk_social_sec INT unsigned NOT NULL,
+    fk_social_sec BIGINT unsigned NOT NULL,
     CONSTRAINT pk_admission PRIMARY KEY(id)
 );
 
@@ -75,34 +75,44 @@ CREATE TABLE IF NOT EXISTS treatment (
 -- create foreign keys
 ALTER TABLE unit 
 ADD CONSTRAINT fk_unit_floor
-FOREIGN KEY (fk_floor_id) REFERENCES floor (id);
+FOREIGN KEY (fk_floor_id) REFERENCES floor (id)
+ON UPDATE CASCADE; 
+-- ON UPDATE CASCADE allows  to change the primary key value and any tables 
+-- that have foreign key references to the value will be changed accordingly
 
 ALTER TABLE unit 
 ADD CONSTRAINT fk_unit_doctor
-FOREIGN KEY (fk_doctor_code) REFERENCES doctor(id_code);
+FOREIGN KEY (fk_doctor_code) REFERENCES doctor(id_code)
+ON UPDATE CASCADE;
 
 ALTER TABLE doctor 
 ADD CONSTRAINT fk_doctor_specialty
-FOREIGN KEY (fk_specialty_id) REFERENCES specialty (id);
+FOREIGN KEY (fk_specialty_id) REFERENCES specialty (id)
+ON UPDATE CASCADE;
 
 ALTER TABLE admission 
 ADD CONSTRAINT fk_admission_unit
-FOREIGN KEY (fk_unit_id) REFERENCES unit (id);
+FOREIGN KEY (fk_unit_id) REFERENCES unit (id)
+ON UPDATE CASCADE;
 
 ALTER TABLE admission 
 ADD CONSTRAINT fk_admission_patient
-FOREIGN KEY (fk_social_sec) REFERENCES patient (social_security);
+FOREIGN KEY (fk_social_sec) REFERENCES patient (social_security)
+ON UPDATE CASCADE;
 
 ALTER TABLE intervention 
 ADD CONSTRAINT fk_intervention_admission
-FOREIGN KEY (fk_admission_id) REFERENCES admission (id);
+FOREIGN KEY (fk_admission_id) REFERENCES admission (id)
+ON UPDATE CASCADE;
 
 ALTER TABLE intervention 
 ADD CONSTRAINT fk_intervention_symptom
-FOREIGN KEY (fk_symptom_id) REFERENCES symptom (id);
+FOREIGN KEY (fk_symptom_id) REFERENCES symptom (id)
+ON UPDATE CASCADE;
 
 ALTER TABLE intervention 
 ADD CONSTRAINT fk_intervention_treatment
-FOREIGN KEY (fk_treatment_id) REFERENCES treatment (id);
+FOREIGN KEY (fk_treatment_id) REFERENCES treatment (id)
+ON UPDATE CASCADE;
 
 

@@ -11,12 +11,15 @@ INSERT INTO doctor VALUES ('01_mm', 'Maria', 'Musterdoktor', 2);
 
 INSERT INTO unit (name, fk_floor_id, fk_doctor_code) VALUES ('Unit A', 1, '08_hh');
 INSERT INTO unit (name, fk_floor_id, fk_doctor_code) VALUES ('Unit B', 2, '01_mm');
+INSERT INTO unit (name, fk_floor_id, fk_doctor_code) VALUES ('Unit C', 2, '01_mm');
 
 INSERT INTO patient (social_security, firstname, flastname, birthdate) VALUES (1485190678, 'Holly', 'Hunter', '1978-06-19');
 INSERT INTO patient (social_security, firstname, flastname, birthdate) VALUES (1843211270, 'Julia', 'Juhu', '1970-12-21');
+INSERT INTO patient (social_security, firstname, flastname, birthdate) VALUES (6743270445, 'Hans', 'Herr', '1945-04-27');
 
 INSERT INTO admission(admission_date, release_date, fk_unit_id, fk_social_sec) VALUES( '2017-12-31', NULL, 1, 1485190678);
 INSERT INTO admission(admission_date, release_date, fk_unit_id, fk_social_sec) VALUES( '2018-01-11', NULL, 2, 1843211270);
+INSERT INTO admission(admission_date, release_date, fk_unit_id, fk_social_sec) VALUES( '2018-01-24', NULL, 2, 6743270445);
 
 INSERT INTO symptom (name) VALUES ('cough');
 INSERT INTO symptom (name) VALUES ('fever');
